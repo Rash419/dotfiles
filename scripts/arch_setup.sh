@@ -19,7 +19,7 @@ install_yay() {
     return
   fi
 
-  cd -P ~/
+  cd -P /home/$USER/
   git clone https://aur.archlinux.org/yay.git
   cd yay
   makepkg -si --noconfirm
@@ -35,8 +35,8 @@ install_packages() {
   yay -S --noconfirm --needed npm openssh tailscale jdk11-openjdk helm kubectl github-cli minikube docker docker-buildx
 
   step "Installing Tmux Plugin Manager..."
-  if [ ! -d ~/.tmux/plugins/tpm ]; then
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  if [ ! -d /home/$USER/.tmux/plugins/tpm ]; then
+    git clone https://github.com/tmux-plugins/tpm /home/$USER/.tmux/plugins/tpm
   else
     echo "Tmux Plugin Manager already installed."
   fi
@@ -46,23 +46,23 @@ install_fonts() {
   step "Installing fonts..."
 
   # Nothingfont
-  if [ ! -d ~/.local/share/fonts/nothing ]; then
+  if [ ! -d /home/$USER/.local/share/fonts/nothing ]; then
     echo "Installing Nothingfonts..."
-    mkdir -p ~/.local/share/fonts/nothing
+    mkdir -p /home/$USER/.local/share/fonts/nothing
     git clone https://github.com/xeji01/nothingfont /tmp/nothingfont
-    cp -r /tmp/nothingfont/*.ttf ~/.local/share/fonts/nothing/
+    cp -r /tmp/nothingfont/*.ttf /home/$USER/.local/share/fonts/nothing/
     rm -rf /tmp/nothingfont
   else
     echo "Nothingfonts already installed."
   fi
 
   # DepartureMono
-  if [ ! -d ~/.local/share/fonts/departure-mono ]; then
+  if [ ! -d /home/$USER/.local/share/fonts/departure-mono ]; then
     echo "Installing DepartureMono..."
-    mkdir -p ~/.local/share/fonts/departure-mono
+    mkdir -p /home/$USER/.local/share/fonts/departure-mono
     wget https://github.com/rektdeckard/departure-mono/releases/download/v1.500/DepartureMono-1.500.zip -O /tmp/DepartureMono.zip
     unzip /tmp/DepartureMono.zip -d /tmp/departure-mono
-    cp /tmp/departure-mono/DepartureMono-1.500/*.otf ~/.local/share/fonts/departure-mono/
+    cp /tmp/departure-mono/DepartureMono-1.500/*.otf /home/$USER/.local/share/fonts/departure-mono/
     rm -rf /tmp/departure-mono /tmp/DepartureMono.zip
   else
     echo "DepartureMono font already installed."
@@ -85,22 +85,22 @@ enable_services() {
 
 copy_dotfiles() {
   step "Cloning and copying dotfiles..."
-  if [ ! -d ~/dotfiles ]; then
-    git clone https://github.com/Rash419/dotfiles ~/dotfiles
+  if [ ! -d /home/$USER/dotfiles ]; then
+    git clone https://github.com/Rash419/dotfiles /home/$USER/dotfiles
   else
     echo "Dotfiles repository already cloned."
   fi
 
-  cd -P ~/dotfiles
+  cd -P /home/$USER/dotfiles
 
   step "Copying config files..."
-  cp -r nvim wlogout waybar wal zsh rofi swaync kitty hypr fastfetch lf cptv ~/.config/
-  cp starship.toml ~/.config/
-  cp .markdownlint-cli2.yaml ~/
-  cp .zshrc ~/
-  cp .tmux.conf ~/
+  cp -r nvim wlogout waybar wal zsh rofi swaync kitty hypr fastfetch lf cptv /home/$USER/.config/
+  cp starship.toml /home/$USER/.config/
+  cp .markdownlint-cli2.yaml /home/$USER/
+  cp .zshrc /home/$USER/
+  cp .tmux.conf /home/$USER/
 
-  cd -P ~
+  cd -P /home/$USER
 }
 
 setup_collabora() {
