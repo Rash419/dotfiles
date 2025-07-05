@@ -19,7 +19,7 @@ install_yay() {
     return
   fi
 
-  cd -P /home/$USER/
+  cd -P "/home/$USER/"
   git clone https://aur.archlinux.org/yay.git
   cd yay
   makepkg -si --noconfirm
@@ -35,8 +35,8 @@ install_packages() {
   yay -S --noconfirm --needed npm openssh tailscale jdk11-openjdk helm kubectl github-cli minikube docker docker-buildx
 
   step "Installing Tmux Plugin Manager..."
-  if [ ! -d /home/$USER/.tmux/plugins/tpm ]; then
-    git clone https://github.com/tmux-plugins/tpm /home/$USER/.tmux/plugins/tpm
+  if [ ! -d "/home/$USER/.tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm "/home/$USER/.tmux/plugins/tpm"
   else
     echo "Tmux Plugin Manager already installed."
   fi
@@ -46,23 +46,23 @@ install_fonts() {
   step "Installing fonts..."
 
   # Nothingfont
-  if [ ! -d /home/$USER/.local/share/fonts/nothing ]; then
+  if [ ! -d "/home/$USER/.local/share/fonts/nothing" ]; then
     echo "Installing Nothingfonts..."
-    mkdir -p /home/$USER/.local/share/fonts/nothing
+    mkdir -p "/home/$USER/.local/share/fonts/nothing"
     git clone https://github.com/xeji01/nothingfont /tmp/nothingfont
-    cp -r /tmp/nothingfont/*.ttf /home/$USER/.local/share/fonts/nothing/
+    cp -r /tmp/nothingfont/*.ttf "/home/$USER/.local/share/fonts/nothing/"
     rm -rf /tmp/nothingfont
   else
     echo "Nothingfonts already installed."
   fi
 
   # DepartureMono
-  if [ ! -d /home/$USER/.local/share/fonts/departure-mono ]; then
+  if [ ! -d "/home/$USER/.local/share/fonts/departure-mono" ]; then
     echo "Installing DepartureMono..."
-    mkdir -p /home/$USER/.local/share/fonts/departure-mono
+    mkdir -p "/home/$USER/.local/share/fonts/departure-mono"
     wget https://github.com/rektdeckard/departure-mono/releases/download/v1.500/DepartureMono-1.500.zip -O /tmp/DepartureMono.zip
     unzip /tmp/DepartureMono.zip -d /tmp/departure-mono
-    cp /tmp/departure-mono/DepartureMono-1.500/*.otf /home/$USER/.local/share/fonts/departure-mono/
+    cp /tmp/departure-mono/DepartureMono-1.500/*.otf "/home/$USER/.local/share/fonts/departure-mono/"
     rm -rf /tmp/departure-mono /tmp/DepartureMono.zip
   else
     echo "DepartureMono font already installed."
@@ -85,22 +85,22 @@ enable_services() {
 
 copy_dotfiles() {
   step "Cloning and copying dotfiles..."
-  if [ ! -d /home/$USER/dotfiles ]; then
-    git clone https://github.com/Rash419/dotfiles /home/$USER/dotfiles
+  if [ ! -d "/home/$USER/dotfiles" ]; then
+    git clone https://github.com/Rash419/dotfiles "/home/$USER/dotfiles"
   else
     echo "Dotfiles repository already cloned."
   fi
 
-  cd -P /home/$USER/dotfiles
+  cd -P "/home/$USER/dotfiles"
 
   step "Copying config files..."
-  cp -r nvim wlogout waybar wal zsh rofi swaync kitty hypr fastfetch lf cptv /home/$USER/.config/
-  cp starship.toml /home/$USER/.config/
-  cp .markdownlint-cli2.yaml /home/$USER/
-  cp .zshrc /home/$USER/
-  cp .tmux.conf /home/$USER/
+  cp -r nvim wlogout waybar wal zsh rofi swaync kitty hypr fastfetch lf cptv "/home/$USER/.config/"
+  cp starship.toml "/home/$USER/.config/"
+  cp .markdownlint-cli2.yaml "/home/$USER/"
+  cp .zshrc "/home/$USER/"
+  cp .tmux.conf "/home/$USER/"
 
-  cd -P /home/$USER
+  cd -P "/home/$USER"
 }
 
 setup_collabora() {
@@ -143,7 +143,7 @@ setup_collabora() {
     cd -P co-2504
     git checkout distro/collabora/co-25.04
     ./autogen.sh --enable-dbgutil --without-system-nss --without-junit
-    make PARALLELISM=$(nproc)
+    make PARALLELISM="$(nproc)"
   else
     echo "LibreOffice core already cloned and built."
   fi
@@ -154,10 +154,10 @@ setup_collabora() {
     git clone https://github.com/CollaboraOnline/online master
     cd -P master
     ./autogen.sh
-    ./configure --enable-silent-rules --with-lokit-path=${COLLABORA_DIR}/core/co-2504/include \
-      --with-lo-path=${COLLABORA_DIR}/core/co-2504/instdir \
+    ./configure --enable-silent-rules --with-lokit-path="${COLLABORA_DIR}/core/co-2504/include" \
+      --with-lo-path="${COLLABORA_DIR}/core/co-2504/instdir" \
       --enable-debug --enable-cypress --enable-feature-lock
-    make -j$(nproc)
+    make -j"$(nproc)"
   else
     echo "Collabora Online already cloned and built."
   fi
