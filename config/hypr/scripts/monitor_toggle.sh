@@ -1,6 +1,5 @@
 #!/bin/bash
 
-laptop_monitor=$(hyprctl monitors | grep "eDP-1")
 external_monitor=$(hyprctl monitors | grep "HDMI-A-1")
 
 if [[ -n "$external_monitor" ]]; then
