@@ -32,7 +32,7 @@ install_packages() {
   yay -S --noconfirm --needed hyprland kitty sddm xdg-desktop-portal-hyprland hyprpolkitagent uwsm libnewt brightnessctl lsd zoxide fastfetch hyprlock hypridle wlogout wifi-menu bluetui wf-recorder hyprshot hyrshade swaync nvim python-pywal16 starship zsh fzf waybar cliphist wl-clipboard man wget unzip bluez-utils pamixer tmux zsh-vi-mode zsh-autocomplete lazygit spotify qbittorrent libfido2 inetutils zen-browser-bin
 
   step "Installing work-related packages..."
-  yay -S --noconfirm --needed npm openssh tailscale jdk11-openjdk helm kubectl github-cli minikube docker docker-buildx
+  yay -S --noconfirm --needed npm openssh tailscale jdk11-openjdk helm kubectl github-cli minikube docker docker-buildx docker-compose
 
   step "Installing Tmux Plugin Manager..."
   if [ ! -d "/home/$USER/.tmux/plugins/tpm" ]; then
