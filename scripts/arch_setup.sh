@@ -29,7 +29,7 @@ install_yay() {
 
 install_packages() {
   step "Installing base packages..."
-  yay -S --noconfirm --needed hyprland kitty sddm xdg-desktop-portal-hyprland hyprpolkitagent uwsm libnewt brightnessctl lsd zoxide fastfetch hyprlock hypridle wlogout wifi-menu bluetui wf-recorder hyprshot hyrshade swaync nvim python-pywal16 starship zsh fzf waybar cliphist wl-clipboard man wget unzip bluez-utils pamixer tmux zsh-vi-mode zsh-autocomplete lazygit spotify qbittorrent libfido2 inetutils zen-browser-bin
+  yay -S --noconfirm --needed hyprland kitty sddm xdg-desktop-portal-hyprland hyprpolkitagent uwsm libnewt brightnessctl lsd zoxide fastfetch hyprlock hypridle wlogout wifi-menu bluetui wf-recorder hyprshot hyrshade swaync nvim python-pywal16 starship zsh fzf waybar cliphist wl-clipboard man wget unzip bluez-utils pamixer tmux zsh-vi-mode zsh-autocomplete lazygit spotify qbittorrent libfido2 inetutils zen-browser-bin kanshi
 
   step "Installing work-related packages..."
   yay -S --noconfirm --needed npm openssh tailscale jdk11-openjdk helm kubectl github-cli minikube docker docker-buildx docker-compose
@@ -94,7 +94,7 @@ copy_dotfiles() {
   cd -P "/home/$USER/dotfiles"
 
   step "Copying config files..."
-  cp -r nvim wlogout waybar wal zsh rofi swaync kitty hypr fastfetch lf cptv "/home/$USER/.config/"
+  cp -r nvim wlogout waybar wal zsh rofi swaync kitty hypr fastfetch lf cptv kanshi "/home/$USER/.config/"
   cp starship.toml "/home/$USER/.config/"
   cp .markdownlint-cli2.yaml "/home/$USER/"
   cp .zshrc "/home/$USER/"
