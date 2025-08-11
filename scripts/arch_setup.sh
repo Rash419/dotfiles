@@ -94,7 +94,7 @@ copy_dotfiles() {
   cd -P "/home/$USER/dotfiles"
 
   step "Copying config files..."
-  cp -r nvim wlogout waybar wal zsh rofi swaync kitty hypr fastfetch lf cptv kanshi "/home/$USER/.config/"
+  cp -r nvim wlogout waybar wal zsh rofi swaync kitty hypr fastfetch yazi kanshi "/home/$USER/.config/"
   cp starship.toml "/home/$USER/.config/"
   cp .markdownlint-cli2.yaml "/home/$USER/"
   cp .zshrc "/home/$USER/"
